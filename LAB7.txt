@@ -1,0 +1,29 @@
+// LAB 7: Write an application to comtrol the operation of hardware simulated traffic signals.
+
+// C++ code
+//
+int AnimationSpeed = 0;
+
+void setup()
+{
+  pinMode(9, OUTPUT);
+  pinMode(10, OUTPUT);
+  pinMode(11, OUTPUT);
+}
+
+void loop()
+{
+  AnimationSpeed = 300;
+  digitalWrite(9, HIGH);
+  delay(AnimationSpeed); // Wait for AnimationSpeed millisecond(s)
+  digitalWrite(9, LOW);
+  delay(AnimationSpeed); // Wait for AnimationSpeed millisecond(s)
+  digitalWrite(10, HIGH);
+  delay(AnimationSpeed); // Wait for AnimationSpeed millisecond(s)
+  digitalWrite(10, LOW);
+  delay(AnimationSpeed); // Wait for AnimationSpeed millisecond(s)
+  digitalWrite(11, HIGH);
+  delay(AnimationSpeed); // Wait for AnimationSpeed millisecond(s)
+  digitalWrite(11, LOW);
+  delay(AnimationSpeed); // Wait for AnimationSpeed millisecond(s)
+}

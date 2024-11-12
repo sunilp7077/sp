@@ -1,0 +1,42 @@
+// Write a program to control the color of the LED by turning 3 different potentiometers. One will be rend for the value of Red, one for the value of Green, and one for the value of Blue.
+
+// Pin assignments for RGB LED
+int bluePin = 10;
+int greenPin = 9;
+int redPin = 11; // Red LED pin
+
+// Variables to hold potentiometer values
+int blueValue;
+int greenValue;
+int redValue;
+
+// Setup function runs once when the program starts
+void setup() {
+  // Set pin modes for RGB LED
+  pinMode(redPin, OUTPUT);
+  pinMode(greenPin, OUTPUT);
+  pinMode(bluePin, OUTPUT);
+
+  // No need to set analog pins A1, A2, A3 as INPUT (they are by default)
+}
+
+// Main loop
+void loop() {
+  // Read values from the three potentiometers connected to A1, A2, A3
+  int pot1 = analogRead(A1); // Red potentiometer (connected to A1)
+  int pot2 = analogRead(A2); // Green potentiometer (connected to A2)
+  int pot3 = analogRead(A3); // Blue potentiometer (connected to A3)
+
+  // Map the potentiometer values (0-1023) to a range (0-255)
+  redValue = map(pot1, 0, 1023, 0, 255);
+  greenValue = map(pot2, 0, 1023, 0, 255);
+  blueValue = map(pot3, 0, 1023, 0, 255);
+
+  // Set the RGB LED to the mapped values
+  analogWrite(redPin, redValue);
+  analogWrite(greenPin, greenValue);
+  analogWrite(bluePin, blueValue);
+
+  // Short delay to make the changes visible (optional)
+  delay(10);
+}

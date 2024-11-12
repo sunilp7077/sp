@@ -1,0 +1,44 @@
+// LAB 6: Write a program so it displays the temperature in Fahrenheit as well as the maximum and minimum temperatures it has seen.
+
+// Define pin for temperature sensor
+const int tempPin = A0; 
+
+// Variables to store max and min temperature readings
+float maxTemp = -999;  // Initialize to a very low value
+float minTemp = 999;   // Initialize to a very high value
+
+void setup() {
+  // Start serial communication for displaying temperature
+  Serial.begin(9600);
+}
+
+void loop() {
+  // Read the analog value from the temperature sensor
+  int analogValue = analogRead(tempPin);
+
+  // Convert the analog value to a temperature in Celsius
+  float voltage = (analogValue / 1024.0) * 5.0;  // Convert to voltage
+  float tempC = (voltage - 0.5) * 100.0;         // Convert voltage to Celsius (for TMP36)
+
+  // Convert Celsius to Fahrenheit
+  float tempF = (tempC * 9.0 / 5.0) + 32.0;
+
+  // Update max and min temperature readings
+  if (tempF > maxTemp) {
+    maxTemp = tempF;
+  }
+  if (tempF < minTemp) {
+    minTemp = tempF;
+  }
+
+  // Print the current, max, and min temperatures to the Serial Monitor
+  Serial.print("Current Temperature (F): ");
+  Serial.println(tempF);
+  Serial.print("Max Temperature (F): ");
+  Serial.println(maxTemp);
+  Serial.print("Min Temperature (F): ");
+  Serial.println(minTemp);
+
+  // Wait for 1 second before taking the next reading
+  delay(1000);
+}

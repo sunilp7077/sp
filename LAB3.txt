@@ -1,0 +1,34 @@
+// LAB 3: Write a program that asks the user for a number and outputs the number squared that is entered.
+
+// Setup function runs once when the program starts
+void setup() {
+  // Initialize serial communication at 9600 bits per second
+  Serial.begin(9600);
+  
+  // Print an initial message to the user
+  Serial.println("Enter a number:");
+}
+
+// Main loop runs repeatedly
+void loop() {
+  // Check if the user has entered something in the serial monitor
+  if (Serial.available() > 0) {
+    // Read the input as a string
+    String input = Serial.readStringUntil('\n');
+    
+    // Convert the string to an integer
+    int number = input.toInt();
+    
+    // Calculate the square of the number
+    int square = number * number;
+    
+    // Output the result
+    Serial.print("The square of ");
+    Serial.print(number);
+    Serial.print(" is: ");
+    Serial.println(square);
+    
+    // Ask for another input
+    Serial.println("Enter another number:");
+  }
+}

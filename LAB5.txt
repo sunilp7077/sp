@@ -1,0 +1,28 @@
+// LAB 5: Write a program read the temperature sensor and send the values to the serial monitor on the computer.
+
+// Define the pin where the LM35 sensor is connected
+int tempPin = A0;  // LM35 OUT pin connected to A0
+
+void setup() {
+  // Start the serial communication to send data to the computer
+  Serial.begin(9600);
+}
+
+void loop() {
+  // Read the analog value from the temperature sensor
+  int analogValue = analogRead(tempPin);
+  
+  // Convert the analog value (0-1023) to voltage (0-5V)
+  float voltage = analogValue * (5.0 / 1023.0);
+  
+  // Convert the voltage to temperature in Celsius (LM35 outputs 10mV per degree Celsius)
+  float temperatureC = voltage * 100;
+
+  // Send the temperature to the serial monitor
+  Serial.print("Temperature: ");
+  Serial.print(temperatureC);
+  Serial.println(" °C");
+
+  // Wait for 1 second before taking another reading
+  delay(1000);
+}

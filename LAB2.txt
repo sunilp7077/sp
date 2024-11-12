@@ -1,0 +1,45 @@
+// Problem Statement: Create a program so that when the user enters 'g' the green light is illuminated "y' the yellow light is illuminated and 'r" the red light is illuminated
+
+// Pin assignments for LEDs
+int redPin = 11;
+int yellowPin = 10;
+int greenPin = 9;
+
+void setup() {
+  // Set the LED pins as output
+  pinMode(redPin, OUTPUT);
+  pinMode(yellowPin, OUTPUT);
+  pinMode(greenPin, OUTPUT);
+  
+  // Start serial communication at 9600 baud rate
+  Serial.begin(9600);
+  
+  // Turn off all LEDs initially
+  digitalWrite(redPin, LOW);
+  digitalWrite(yellowPin, LOW);
+  digitalWrite(greenPin, LOW);
+}
+
+void loop() {
+  // Check if any data is available from the serial monitor
+  if (Serial.available() > 0) {
+    // Read the incoming character
+    char input = Serial.read();
+    
+    // Turn off all LEDs first
+    digitalWrite(redPin, LOW);
+    digitalWrite(yellowPin, LOW);
+    digitalWrite(greenPin, LOW);
+    
+    // Check which key was pressed and turn on the appropriate LED
+    if (input == 'r') {
+      digitalWrite(redPin, HIGH);  // Turn on red LED
+    } 
+    else if (input == 'y') {
+      digitalWrite(yellowPin, HIGH);  // Turn on yellow LED
+    } 
+    else if (input == 'g') {
+      digitalWrite(greenPin, HIGH);  // Turn on green LED
+    }
+  }
+}
